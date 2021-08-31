@@ -12,7 +12,6 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
     var diceArray = [SCNNode]()
     @IBOutlet var sceneView: ARSCNView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
@@ -76,13 +75,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func roll(dice: SCNNode) {
-        let randomX = Float(arc4random_uniform(4) + 1) * (Float.pi / 2)
-        let randomZ = Float(arc4random_uniform(4) + 1) * (Float.pi / 2)
+        let randomX = Float(arc4random_uniform(4) + 1) * (.pi / 2)
+        let randomZ = Float(arc4random_uniform(4) + 1) * (.pi / 2)
         dice.runAction(
             SCNAction.rotateBy(x: CGFloat(randomX * 5),
                                y: 0,
                                z: CGFloat(randomZ * 5),
-                               duration: 0.5)
+                               duration: 0.7)
         )
     }
     
@@ -96,14 +95,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     //MARK: - Plane Rendering Method
     func planeRendering(with planeAnchor: ARPlaneAnchor) -> SCNNode {
-        let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
-        let planeNode = SCNNode()
-        planeNode.position = SCNVector3(planeAnchor.center.x, 0, planeAnchor.center.z)
-        planeNode.transform = SCNMatrix4MakeRotation(-Float.pi / 2, 1, 0, 0)
-        let gridMaterial = SCNMaterial()
-        gridMaterial.diffuse.contents = UIImage(named: "art.scnassets/grid.png")
-        plane.materials = [gridMaterial]
-        planeNode.geometry = plane
+        let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x),
+                             height: CGFloat(planeAnchor.extent.z))
+        let planeNode = SCNNode(geometry: plane)
+        planeNode.position = SCNVector3(planeAnchor.center.x,
+                                        0,
+                                        planeAnchor.center.z)
+        planeNode.eulerAngles.x = -.pi / 2
+        plane.firstMaterial?.diffuse.contents = UIImage(named: "art.scnassets/grid.png")
         return planeNode
     }
 }

@@ -63,16 +63,8 @@
 				4DF88E7426D90BF800F8DDC3 /* Assets.xcassets */,
 				4DF88E7626D90BF800F8DDC3 /* LaunchScreen.storyboard */,
 				4DF88E7926D90BF800F8DDC3 /* Info.plist */,
-				4DF88E8226D918D500F8DDC3 /* Resources */,
 			);
 			path = ARDicee;
-			sourceTree = "<group>";
-		};
-		4DF88E8226D918D500F8DDC3 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
